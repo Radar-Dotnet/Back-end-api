@@ -3,6 +3,17 @@ using projeto_radar_backend.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builder => {
+            builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddDbContext<DbRadarContext>(service =>
 {
     var conn = Environment.GetEnvironmentVariable("DATABASE_CF_URL");
@@ -27,6 +38,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowOrigin");
 
 app.UseAuthorization();
 

@@ -25,7 +25,7 @@ namespace projeto_radar_backend.Models
         public string Descricao { get; set; } = null!;
         [Column("valor")]
         public int Valor { get; set; }
-        [Column("qtd_estoque")]
+        [Column("QtdEstoque")]
         public int QtdEstoque { get; set; }
 
         [InverseProperty("Produto")]

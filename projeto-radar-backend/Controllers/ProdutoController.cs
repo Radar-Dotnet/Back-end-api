@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projeto_radar_backend.Database;
+using projeto_radar_backend.DTOs;
 using projeto_radar_backend.Models;
+using projeto_radar_backend.Services;
 
 namespace projeto_radar_backend.Controllers
 {
@@ -47,7 +49,7 @@ namespace projeto_radar_backend.Controllers
 
             return produto;
         }
-
+            
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduto(int id, Produto produto)
         {
@@ -79,9 +81,10 @@ namespace projeto_radar_backend.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Produto>> PostProduto(Produto produto)
+        public async Task<ActionResult<Produto>> PostProduto(Produto produtoDTO)
         {
-          if (_context.Produtos == null)
+            var produto = DTOBuilder<Produto>.Builder(produtoDTO);
+            if (_context.Produtos == null)
           {
               return Problem("Entity set 'DbRadarContext.Produtos'  is null.");
           }

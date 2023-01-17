@@ -83,7 +83,7 @@ namespace projeto_radar_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente([FromBody]ClienteDTO clienteDto)
         {
-            var cliente = DTOBuilder<Cliente>.Builder(clienteDto);
+          var cliente = DTOBuilder<Cliente>.Builder(clienteDto);
           if (_context.Clientes == null)
           {
               return Problem("Entity set 'DbRadarContext.Clientes'  is null.");
