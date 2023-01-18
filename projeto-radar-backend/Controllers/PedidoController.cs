@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projeto_radar_backend.Database;
+using projeto_radar_backend.DTOs;
 using projeto_radar_backend.Models;
 
 namespace projeto_radar_backend.Controllers
@@ -49,14 +50,14 @@ namespace projeto_radar_backend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPedido(int id, Pedido pedido)
+        public async Task<IActionResult> PutPedido(int id, PedidoDTO pedidoDTO)
         {
-            if (id != pedido.Id)
+            if (id != pedidoDTO.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pedido).State = EntityState.Modified;
+            _context.Entry(pedidoDTO).State = EntityState.Modified;
 
             try
             {
