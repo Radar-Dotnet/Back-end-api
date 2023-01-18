@@ -316,7 +316,7 @@ namespace projeto_radar_backend.Migrations
 
                     b.Property<int>("QtdEstoque")
                         .HasColumnType("int")
-                        .HasColumnName("qtd_estoque");
+                        .HasColumnName("QtdEstoque");
 
                     b.Property<int>("Valor")
                         .HasColumnType("int")

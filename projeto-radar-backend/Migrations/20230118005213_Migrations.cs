@@ -112,7 +112,7 @@ namespace projeto_radar_backend.Migrations
                     descricao = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     valor = table.Column<int>(type: "int", nullable: false),
-                    qtd_estoque = table.Column<int>(type: "int", nullable: false)
+                    QtdEstoque = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

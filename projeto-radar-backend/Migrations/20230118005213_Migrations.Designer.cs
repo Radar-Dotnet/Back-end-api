@@ -11,7 +11,7 @@ using projeto_radar_backend.Database;
 namespace projeto_radar_backend.Migrations
 {
     [DbContext(typeof(DbRadarContext))]
-    [Migration("20230115153047_Migrations")]
+    [Migration("20230118005213_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -318,7 +318,7 @@ namespace projeto_radar_backend.Migrations
 
                     b.Property<int>("QtdEstoque")
                         .HasColumnType("int")
-                        .HasColumnName("qtd_estoque");
+                        .HasColumnName("QtdEstoque");
 
                     b.Property<int>("Valor")
                         .HasColumnType("int")

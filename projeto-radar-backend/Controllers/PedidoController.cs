@@ -87,7 +87,7 @@ namespace projeto_radar_backend.Controllers
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPedido", new { id = pedido.Id }, pedido);
+            return CreatedAtAction("GetPedido", new { id = pedido.Id });
         }
 
         [HttpDelete("{id}")]
