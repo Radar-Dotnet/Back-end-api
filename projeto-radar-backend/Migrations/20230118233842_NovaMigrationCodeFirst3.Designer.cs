@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projeto_radar_backend.Database;
 
@@ -10,9 +11,10 @@ using projeto_radar_backend.Database;
 namespace projeto_radar_backend.Migrations
 {
     [DbContext(typeof(DbRadarContext))]
-    partial class DbRadarContextModelSnapshot : ModelSnapshot
+    [Migration("20230118233842_NovaMigrationCodeFirst3")]
+    partial class NovaMigrationCodeFirst3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

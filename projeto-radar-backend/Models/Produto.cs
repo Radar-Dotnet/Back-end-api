@@ -6,29 +6,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
-    [Table("Produto")]
-    public partial class Produto
+    //[Table("Produto")]
+    public record Produto
     {
-        public Produto()
-        {
-            PedidosProdutos = new HashSet<PedidosProduto>();
-        }
+        //public Produto()
+        //{
+        //    PedidosProdutos = new HashSet<PedidosProduto>();
+        //}
 
-        [Key]
-        [Column("id")]
+        //[Key]
+        //[Column("id")]
         public int Id { get; set; }
-        [Column("nome")]
-        [StringLength(100)]
+        //[Column("nome")]
+        //[StringLength(100)]
         public string Nome { get; set; } = null!;
-        [Column("descricao")]
-        [StringLength(255)]
+        //[Column("descricao")]
+        //[StringLength(255)]
         public string Descricao { get; set; } = null!;
-        [Column("valor")]
+        //[Column("valor")]
         public int Valor { get; set; }
-        [Column("qtd_estoque")]
+        //[Column("qtd_estoque")]
         public int QtdEstoque { get; set; }
 
-        [InverseProperty("Produto")]
-        public virtual ICollection<PedidosProduto> PedidosProdutos { get; set; }
+        //[InverseProperty("Produto")]
+        //public virtual ICollection<PedidosProduto> PedidosProdutos { get; set; }
     }
 }

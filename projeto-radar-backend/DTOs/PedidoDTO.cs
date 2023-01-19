@@ -11,6 +11,7 @@ namespace projeto_radar_backend.DTOs
         public int ClienteId { get; set; }
         public int ValorTotal { get; set; }
         public DateTime Data { get; set; }
+        public Cliente Cliente { get; set; } = null!;
     }
 }
 

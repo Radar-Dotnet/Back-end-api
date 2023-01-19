@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using projeto_radar_backend.Database;
 using projeto_radar_backend.DTOs;
 using projeto_radar_backend.Models;
+using projeto_radar_backend.Services;
 
 namespace projeto_radar_backend.Controllers
 {
@@ -85,6 +86,35 @@ namespace projeto_radar_backend.Controllers
           {
               return Problem("Entity set 'DbRadarContext.Pedidos'  is null.");
           }
+
+            //var selectClientePorId = await Task.FromResult(
+            //        (
+            //        from d in _context.Clientes
+            //        where d.Id == pedido.Id
+            //        select d
+            //        )
+            //    );
+            //var list = selectClientePorId.Select(s => new {
+            //    s.Id,
+            //    s.Bairro,
+            //    s.Cep,
+            //    s.Cidade,
+            //    s.Complemento,
+            //    s.Cpf,
+            //    s.Email,
+            //    s.Estado,
+            //    s.Logradouro,
+            //    s.Nome,
+            //    s.Numero,
+            //    s.Pedidos,
+            //    s.Telefone
+            //}).ToList();
+            //Console.WriteLine(selectClientePorId);
+
+            var objeto = _context.Clientes.FirstOrDefault(x => x.Id == pedido.Id);
+            Console.WriteLine(objeto);
+            //if(objeto != null) { pedido.Cliente = objeto; };
+
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
 

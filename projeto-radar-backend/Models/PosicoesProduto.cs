@@ -6,23 +6,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
-    [Index("CampanhaId", Name = "fk_PosicoesProdutos_Campanhas1_idx")]
-    public partial class PosicoesProduto
+    //[Index("CampanhaId", Name = "fk_PosicoesProdutos_Campanhas1_idx")]
+    public record PosicoesProduto
     {
-        [Key]
-        [Column("id")]
+        //[Key]
+        //[Column("id")]
         public int Id { get; set; }
-        [Column("campanha_id")]
+        //[Column("campanha_id")]
         public int CampanhaId { get; set; }
-        [Column("posicao_x")]
-        [StringLength(45)]
+
+        public Campanha Campanha { get; set; } = null!;
+
+        //[Column("posicao_x")]
+        //[StringLength(45)]
         public string PosicaoX { get; set; } = null!;
-        [Column("posicao_y")]
-        [StringLength(45)]
+        //[Column("posicao_y")]
+        //[StringLength(45)]
         public string PosicaoY { get; set; } = null!;
 
-        [ForeignKey("CampanhaId")]
-        [InverseProperty("PosicoesProdutos")]
-        public virtual Campanha Campanha { get; set; } = null!;
+        //[ForeignKey("CampanhaId")]
+        //[InverseProperty("PosicoesProdutos")]
+        //public Campanha Campanha { get; set; } = null!;
     }
 }
