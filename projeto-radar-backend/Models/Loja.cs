@@ -6,42 +6,52 @@ using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
-    public record Loja
-    {
-        //[Key]
-        //[Column("id")]
-        public int Id { get; set; }
-        //[Column("nome")]
-        //[StringLength(100)]
-        public string Nome { get; set; } = null!;
-        //[Column("observacao")]
-        //[StringLength(255)]
-        public string? Observacao { get; set; }
-        //[Column("cep")]
-        //[StringLength(15)]
-        public string Cep { get; set; } = null!;
-        //[Column("logradouro")]
-        //[StringLength(50)]
-        public string Logradouro { get; set; } = null!;
-        //[Column("numero")]
-        public int Numero { get; set; }
-        //[Column("bairro")]
-        //[StringLength(50)]
-        public string Bairro { get; set; } = null!;
-        //[Column("cidade")]
-        //[StringLength(45)]
-        public string Cidade { get; set; } = null!;
-        //[Column("estado")]
-        //[StringLength(2)]
-        public string Estado { get; set; } = null!;
-        //[Column("complemento")]
-        //[StringLength(45)]
-        public string? Complemento { get; set; }
-        //[Column("latitude")]
-        //[StringLength(25)]
-        public string Latitude { get; set; } = null!;
-        //[Column("longitude")]
-        //[StringLength(25)]
-        public string Longitude { get; set; } = null!;
-    }
+  [Table("lojas")]
+  public record Loja
+  {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
+
+    [Required]
+    [Column("nome", TypeName = "varchar(150)")]
+    public string Nome { get; set; } = default!;
+
+    [Column("observacao", TypeName = "text")]
+    public string? Observacao { get; set; }
+
+    [Required]
+    [Column("cep", TypeName = "varchar(15)")]
+    public string Cep { get; set; } = default!;
+
+    [Required]
+    [Column("logradouro", TypeName = "varchar(100)")]
+    public string Logradouro { get; set; } = default!;
+
+    [Column("numero", TypeName = "int")]
+    public int? Numero { get; set; }
+
+    [Required]
+    [Column("bairro", TypeName = "varchar(100)")]
+    public string? Bairro { get; set; } = default!;
+
+    [Required]
+    [Column("cidade", TypeName = "varchar(50)")]
+    public string Cidade { get; set; } = default!;
+
+    [Required]
+    [Column("estado", TypeName = "varchar(2)")]
+    public string Estado { get; set; } = default!;
+
+    [Column("complemento", TypeName = "varchar(100)")]
+    public string? Complemento { get; set; }
+
+    [Required]
+    [Column("latitude", TypeName = "varchar(50)")]
+    public string Latitude { get; set; } = default!;
+
+    [Required]
+    [Column("latitude", TypeName = "varchar(50)")]
+    public string Longitude { get; set; } = default!;
+  }
 }

@@ -1,34 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
-    //[Table("Produto")]
-    public record Produto
-    {
-        //public Produto()
-        //{
-        //    PedidosProdutos = new HashSet<PedidosProduto>();
-        //}
+  [Table("produtos")]
+  public record Produto
+  {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
 
-        //[Key]
-        //[Column("id")]
-        public int Id { get; set; }
-        //[Column("nome")]
-        //[StringLength(100)]
-        public string Nome { get; set; } = null!;
-        //[Column("descricao")]
-        //[StringLength(255)]
-        public string Descricao { get; set; } = null!;
-        //[Column("valor")]
-        public int Valor { get; set; }
-        //[Column("qtd_estoque")]
-        public int QtdEstoque { get; set; }
+    [Required]
+    [Column("nome", TypeName = "varchar(150)")]
+    public string Nome { get; set; } = default!;
 
-        //[InverseProperty("Produto")]
-        //public virtual ICollection<PedidosProduto> PedidosProdutos { get; set; }
-    }
+    [Column("descricao", TypeName = "text")]
+    public string Descricao { get; set; } = null!;
+
+    [Column("valor", TypeName = "decimal")]
+    public decimal? Valor { get; set; }
+    
+    [Column("qtd_estoque", TypeName = "int")]
+    public int QtdEstoque { get; set; }
+  }
 }
