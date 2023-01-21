@@ -6,32 +6,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
-    //[Index("PedidoId", Name = "fk_Pedido_has_Produto_Pedido1_idx")]
-    //[Index("ProdutoId", Name = "fk_Pedido_has_Produto_Produto1_idx")]
-    public record PedidosProduto
-    {
-        //[Key]
-        //[Column("id")]
-        public int Id { get; set; }
-        //[Column("pedido_id")]
-        public int PedidoId { get; set; }
+  [Table("pedidosprodutos")]
+  public record PedidosProduto
+  {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
 
-        public Pedido? Pedido { get; set; }
-        //[Column("produto_id")]
-        public int ProdutoId { get; set; }
+    [Required]
+    [Column("pedido_id", TypeName = "int")]
+    public int PedidoId { get; set; }
 
-        public Produto? Produto { get; set; }
+    public Pedido? Pedido { get; set; }
 
-        //[Column("valor")]
-        public int Valor { get; set; }
-        //[Column("quantidade")]
-        public int Quantidade { get; set; }
+    [Required]
+    [Column("produto_id", TypeName = "int")]
+    public int ProdutoId { get; set; }
 
-        //[ForeignKey("PedidoId")]
-        //[InverseProperty("PedidosProdutos")]
-        //public virtual Pedido Pedido { get; set; } = null!;
-        //[ForeignKey("ProdutoId")]
-        //[InverseProperty("PedidosProdutos")]
-        //public virtual Produto Produto { get; set; } = null!;
-    }
+    public Produto? Produto { get; set; }
+
+    [Column("valor", TypeName = "decimal")]
+    public decimal? Valor { get; set; }
+
+    [Column("quantidade", TypeName = "int")]
+    public int? Quantidade { get; set; }
+  }
 }

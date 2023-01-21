@@ -1,31 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
-    //[Index("CampanhaId", Name = "fk_PosicoesProdutos_Campanhas1_idx")]
-    public record PosicoesProduto
-    {
-        //[Key]
-        //[Column("id")]
-        public int Id { get; set; }
-        //[Column("campanha_id")]
-        public int CampanhaId { get; set; }
+  [Table("posicoesprodutos")]
+  public record PosicoesProduto
+  {
+   [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
 
-        public Campanha Campanha { get; set; } = null!;
+    [Required]
+    [Column("campanha_id", TypeName = "int")]
+    public int CampanhaId { get; set; } = default!;
 
-        //[Column("posicao_x")]
-        //[StringLength(45)]
-        public string PosicaoX { get; set; } = null!;
-        //[Column("posicao_y")]
-        //[StringLength(45)]
-        public string PosicaoY { get; set; } = null!;
+    public Campanha Campanha { get; set; } = null!;
 
-        //[ForeignKey("CampanhaId")]
-        //[InverseProperty("PosicoesProdutos")]
-        //public Campanha Campanha { get; set; } = null!;
-    }
+    [Required]
+    [Column("posicao_x", TypeName ="varchar(20)")]
+    public string PosicaoX { get; set; } = default!;
+
+    [Column("posicao_y", TypeName = "varchar(20)")]
+    public string PosicaoY { get; set; } = null!;
+  }
 }

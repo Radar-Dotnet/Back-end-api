@@ -6,29 +6,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
-    public record Campanha
-    {
-        //public Campanha()
-        //{
-        //    PosicoesProdutos = new HashSet<PosicoesProduto>();
-        //}
+  [Table("campanhas")]
+  public record Campanha
+  {
 
-        //[Key]
-        //[Column("id")]
-        public int Id { get; set; }
-        //[Column("nome")]
-        //[StringLength(45)]
-        public string Nome { get; set; } = null!;
-        //[Column("descricao")]
-        //[StringLength(255)]
-        public string? Descricao { get; set; }
-        //[Column("data", TypeName = "datetime")]
-        public DateTime Data { get; set; }
-        //[Column("url_foto_prateleira")]
-        //[StringLength(255)]
-        public string UrlFotoPrateleira { get; set; } = null!;
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
 
-        //[InverseProperty("Campanha")]
-        //public virtual ICollection<PosicoesProduto> PosicoesProdutos { get; set; }
-    }
+    [Required]
+    [Column("nome", TypeName = "varchar(150)")]
+    public string Nome { get; set; } = default!;
+
+    [Column("descricao", TypeName = "text")]
+    public string? Descricao { get; set; }
+
+    [Column("data", TypeName = "DateTime")]
+    public DateTime? Data { get; set; }
+
+    [Column("url_imagem", TypeName = "text")]
+    public string? UrlFotoPrateleira { get; set; }
+
+  }
 }
