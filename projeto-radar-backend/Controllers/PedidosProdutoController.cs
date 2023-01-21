@@ -8,7 +8,8 @@ namespace projeto_radar_backend.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class PedidosProdutoController : ControllerBase
+    [AllowAnonymous]
+    public class PedidosProdutoController : ControllerBase
   {
     private readonly DbRadarContext _context;
 

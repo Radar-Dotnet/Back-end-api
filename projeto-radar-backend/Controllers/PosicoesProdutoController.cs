@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projeto_radar_backend.Database;
@@ -7,7 +8,8 @@ namespace projeto_radar_backend.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class PosicoesProdutoController : ControllerBase
+    [AllowAnonymous]
+    public class PosicoesProdutoController : ControllerBase
   {
     private readonly DbRadarContext _context;
 
