@@ -14,13 +14,14 @@ namespace projeto_radar_backend.Models
     [Column("campanha_id", TypeName = "int")]
     public int CampanhaId { get; set; } = default!;
 
-    public Campanha Campanha { get; set; } = null!;
+    public Campanha? Campanha { get; set; }
 
     [Required]
     [Column("posicao_x", TypeName ="varchar(20)")]
     public string PosicaoX { get; set; } = default!;
 
+    [Required]
     [Column("posicao_y", TypeName = "varchar(20)")]
-    public string PosicaoY { get; set; } = null!;
+    public string PosicaoY { get; set; } = default!;
   }
 }

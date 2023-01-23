@@ -16,7 +16,7 @@ namespace projeto_radar_backend.Database
 
     public virtual DbSet<Campanha> Campanhas { get; set; } = null!;
     public virtual DbSet<Cliente> Clientes { get; set; } = null!;
-    public virtual DbSet<Loja> Lojas { get; set; } = null!;
+    public virtual DbSet<LojaDTO> Lojas { get; set; } = null!;
     public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
     public virtual DbSet<PedidosProduto> PedidosProdutos { get; set; } = null!;
     public virtual DbSet<PosicoesProduto> PosicoesProdutos { get; set; } = null!;

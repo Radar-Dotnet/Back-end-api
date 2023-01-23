@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace projeto_radar_backend.DTOs
 {
-	public class ProdutoDTO
+	public record ProdutoDTO
 	{
-
         public string Nome { get; set; } = null!;
         public string Descricao { get; set; } = null!;
         public int Valor { get; set; }

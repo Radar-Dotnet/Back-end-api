@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Models
 {
@@ -24,7 +21,8 @@ namespace projeto_radar_backend.Models
     [Column("valor_total", TypeName = "decimal")]
     public decimal? ValorTotal { get; set; }
 
+    [Required]
     [Column("data", TypeName = "DateTime")]
-    public DateTime Data { get; set; }
+    public DateTime Data { get; set; } = default!;
   }
 }

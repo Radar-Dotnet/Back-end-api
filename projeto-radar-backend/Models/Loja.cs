@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace projeto_radar_backend.Models
 {
   [Table("lojas")]
-  public record Loja
+  public record LojaDTO
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

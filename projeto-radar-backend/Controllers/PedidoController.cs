@@ -42,11 +42,11 @@ namespace projeto_radar_backend.Controllers
 
     [HttpPut("{id}")]
     [Authorize(Roles = "admin")]
-    public async Task<IActionResult> PutPedido(int id, PedidoDTO pedidoDTO)
+    public async Task<IActionResult> PutPedido(int id, Pedido pedido)
     {
-      if (id != pedidoDTO.Id) return BadRequest();
+      if (id != pedido.Id) return BadRequest();
 
-      _context.Entry(pedidoDTO).State = EntityState.Modified;
+      _context.Entry(pedido).State = EntityState.Modified;
 
       try
       {

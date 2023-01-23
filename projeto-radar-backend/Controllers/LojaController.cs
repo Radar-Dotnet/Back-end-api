@@ -19,7 +19,7 @@ namespace projeto_radar_backend.Controllers
 
     [HttpGet]
     [Authorize(Roles = "admin,editor")]
-    public async Task<ActionResult<IEnumerable<Loja>>> GetLojas()
+    public async Task<ActionResult<IEnumerable<LojaDTO>>> GetLojas()
     {
       if (_context.Lojas == null) return NotFound();
 
@@ -28,7 +28,7 @@ namespace projeto_radar_backend.Controllers
 
     [HttpGet("{id}")]
     [Authorize(Roles = "admin,editor")]
-    public async Task<ActionResult<Loja>> GetLoja(int id)
+    public async Task<ActionResult<LojaDTO>> GetLoja(int id)
     {
       if (_context.Lojas == null) return NotFound();
 
@@ -41,7 +41,7 @@ namespace projeto_radar_backend.Controllers
 
     [HttpPut("{id}")]
     [Authorize(Roles = "admin")]
-    public async Task<IActionResult> PutLoja(int id, Loja loja)
+    public async Task<IActionResult> PutLoja(int id, LojaDTO loja)
     {
       if (id != loja.Id) return BadRequest();
 
@@ -68,7 +68,7 @@ namespace projeto_radar_backend.Controllers
 
     [HttpPost]
     [Authorize(Roles = "admin")]
-    public async Task<ActionResult<Loja>> PostLoja(Loja loja)
+    public async Task<ActionResult<LojaDTO>> PostLoja(LojaDTO loja)
     {
       if (_context.Lojas == null)
         return Problem("Entity set 'DbRadarContext.Lojas'  is null.");

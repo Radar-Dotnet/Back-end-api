@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using projeto_radar_backend.Database;
 using projeto_radar_backend.DTOs;
 using projeto_radar_backend.Models;
+using projeto_radar_backend.Repository.Interfaces;
 using projeto_radar_backend.Services;
 
 namespace projeto_radar_backend.Controllers
@@ -12,94 +11,70 @@ namespace projeto_radar_backend.Controllers
   [ApiController]
   public class ClienteController : ControllerBase
   {
-    private readonly DbRadarContext _context;
-
-    public ClienteController(DbRadarContext context)
+    private readonly IService<Cliente> _service;
+    public ClienteController(IService<Cliente> service)
     {
-      _context = context;
+      _service = service;
     }
 
-    [HttpGet]
+    [HttpGet("")]
     [Authorize(Roles = "admin,editor")]
-    public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
+    public async Task<IActionResult> GetAll()
     {
-      if (_context.Clientes == null) return NotFound();
+      var clientes = await _service.GetAllAsync();
+      if (clientes is null)
+        return StatusCode(404, new { Message = "Nenhum cliente foi encontrado."});
 
-      return await _context.Clientes.ToListAsync();
+      return StatusCode(200, clientes);
     }
 
     [HttpGet("{id}")]
     [Authorize(Roles = "admin,editor")]
-    public async Task<ActionResult<Cliente>> GetCliente(int id)
+    public async Task<IActionResult> Get([FromRoute] int id)
     {
-      if (_context.Clientes == null) return NotFound();
-      var cliente = await _context.Clientes.FindAsync(id);
-
-      if (cliente == null) return NotFound();
-
-      return cliente;
+      var cliente = (await _service.GetAllAsync()).Find(c => c.Id == id);
+      if (id != cliente?.Id)
+        return StatusCode(400, new { Message = "Id inválido" });
+      if (cliente is null)
+        return StatusCode(404, new { Message = "O cliente enviado não foi encontrado" });
+      
+      return StatusCode(200, cliente);
     }
 
     [HttpPut("{id}")]
     [Authorize(Roles = "admin")]
-    public async Task<IActionResult> PutCliente(int id, Cliente cliente)
+    public async Task<IActionResult> Update([FromRoute]int id,[FromBody] Cliente cliente)
     {
-      if (id != cliente.Id) return BadRequest();
+      if (id != cliente.Id)
+        return StatusCode(400, new { Message = "O Id do cliente deve ser o mesmo id da URL" });
 
-      _context.Entry(cliente).State = EntityState.Modified;
-
-      try
-      {
-        await _context.SaveChangesAsync();
-      }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!ClienteExists(id))
-        {
-          return NotFound();
-        }
-        else
-        {
-          throw;
-        }
-      }
-
-      return NoContent();
+      var clienteDb = await _service.UpdateAsync(cliente);
+      return StatusCode(200, clienteDb);
+     
     }
 
     [HttpPost]
     [Authorize(Roles = "admin")]
-    public async Task<ActionResult<Cliente>> PostCliente([FromBody] ClienteDTO clienteDto)
+    public async Task<IActionResult> Create([FromBody] ClienteDTO clienteDto)
     {
       var cliente = DTOBuilder<Cliente>.Builder(clienteDto);
-
-      if (_context.Clientes == null) return Problem("Entity set 'DbRadarContext.Clientes'  is null.");
-
-      _context.Clientes.Add(cliente);
-      await _context.SaveChangesAsync();
-
-      return CreatedAtAction("GetCliente", new { id = cliente.Id }, cliente);
+      await _service.CreateAsync(cliente);
+      return StatusCode(201, cliente);
     }
 
     [HttpDelete("{id}")]
     [Authorize(Roles = "admin")]
-    public async Task<IActionResult> DeleteCliente(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-      if (_context.Clientes == null) return NotFound();
 
-      var cliente = await _context.Clientes.FindAsync(id);
+      var cliente = (await _service.GetAllAsync()).Find(c => c.Id == id);
 
-      if (cliente == null) return NotFound();
+      if (cliente is null)
+        return StatusCode(404, new { Message = "O cliente não existe." });
 
-      _context.Clientes.Remove(cliente);
-      await _context.SaveChangesAsync();
+      await _service .DeleteAsync(cliente);
 
-      return NoContent();
-    }
-
-    private bool ClienteExists(int id)
-    {
-      return (_context.Clientes?.Any(e => e.Id == id)).GetValueOrDefault();
+      return StatusCode(204);
     }
   }
 }

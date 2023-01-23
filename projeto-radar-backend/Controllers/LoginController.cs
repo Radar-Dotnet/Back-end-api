@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace projeto_radar_backend.Controllers
 {
+  [Route("api/[controller]")]
 	public class LoginController : ControllerBase
 	{
     private readonly DbRadarContext _context;
@@ -18,7 +19,7 @@ namespace projeto_radar_backend.Controllers
       _context = context;
     }
 
-    [HttpPost("/login")]
+    [HttpPost("")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
 		{

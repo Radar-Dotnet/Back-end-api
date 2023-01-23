@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using projeto_radar_backend.Database;
+using projeto_radar_backend.DTOs;
 using projeto_radar_backend.Models;
+using projeto_radar_backend.Services;
 
 namespace projeto_radar_backend.Controllers
 {
@@ -74,15 +76,16 @@ namespace projeto_radar_backend.Controllers
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     [Authorize(Roles = "admin")]
-    public async Task<ActionResult<PedidosProduto>> PostPedidosProduto(PedidosProduto pedidosProduto)
+    public async Task<ActionResult<PedidosProdutoDTO>> PostPedidosProduto(PedidosProdutoDTO pedidosProduto)
     {
       if (_context.PedidosProdutos == null)
         return Problem("Entity set 'DbRadarContext.PedidosProdutos'  is null.");
 
-      _context.PedidosProdutos.Add(pedidosProduto);
+      var pedido = DTOBuilder<PedidosProduto>.Builder(pedidosProduto);
+      _context.PedidosProdutos.Add(pedido);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetPedidosProduto", new { id = pedidosProduto.Id }, pedidosProduto);
+      return CreatedAtAction("GetPedidosProduto", new { id = pedido.Id }, pedido);
     }
 
     // DELETE: api/PedidosProduto/5

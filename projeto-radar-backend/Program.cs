@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using projeto_radar_backend.Database;
+using projeto_radar_backend.Models;
+using projeto_radar_backend.Repository.Entity;
+using projeto_radar_backend.Repository.Interfaces;
 using projeto_radar_backend.Services.Auth;
 using System.Text;
 
@@ -27,6 +30,9 @@ builder.Services.AddDbContext<DbRadarContext>(service =>
   if (conn is null) conn = builder.Configuration.GetConnectionString("cnn");
   service.UseMySql(conn, ServerVersion.AutoDetect(conn));
 });
+
+builder.Services.AddScoped<IServiceUser<User>, UserRepository>();
+builder.Services.AddScoped<IService<Cliente>, ClienteRepository>();
 
 // Add services to the container.
 builder.Services.AddControllers();
