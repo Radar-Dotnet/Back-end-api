@@ -51,7 +51,7 @@ namespace projeto_radar_backend.Models
     public string Latitude { get; set; } = default!;
 
     [Required]
-    [Column("latitude", TypeName = "varchar(50)")]
+    [Column("longitude", TypeName = "varchar(50)")]
     public string Longitude { get; set; } = default!;
   }
 }
