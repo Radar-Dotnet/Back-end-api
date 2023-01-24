@@ -9,7 +9,6 @@ namespace projeto_radar_backend.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-    [AllowAnonymous]
     public class ProdutoController : ControllerBase
   {
     private readonly DbRadarContext _context;
@@ -20,7 +19,8 @@ namespace projeto_radar_backend.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
+        [Authorize(Roles = "admin,editor")]
+        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
     {
       if (_context.Produtos == null) return NotFound();
 
@@ -28,7 +28,8 @@ namespace projeto_radar_backend.Controllers
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Produto>> GetProduto(int id)
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult<Produto>> GetProduto(int id)
     {
       if (_context.Produtos == null) return NotFound();
 
@@ -40,7 +41,8 @@ namespace projeto_radar_backend.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutProduto(int id, Produto produto)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> PutProduto(int id, Produto produto)
     {
       if (id != produto.Id) return BadRequest();
 
@@ -67,7 +69,8 @@ namespace projeto_radar_backend.Controllers
 
 
     [HttpPost]
-    public async Task<ActionResult<Produto>> PostProduto(Produto produtoDTO)
+        [Authorize(Roles = "admin")]
+        public async Task<ActionResult<Produto>> PostProduto(Produto produtoDTO)
     {
       var produto = DTOBuilder<Produto>.Builder(produtoDTO);
       if (_context.Produtos == null)
@@ -80,7 +83,8 @@ namespace projeto_radar_backend.Controllers
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteProduto(int id)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteProduto(int id)
     {
       if (_context.Produtos == null) return NotFound();
 

@@ -17,9 +17,9 @@ namespace projeto_radar_backend.Models
     [Column("cliente_id")]
     public int ClienteId { get; set; } = default!;
 
-    [Required]
-    [Column("cliente", TypeName = "varchar(150)")]
-    public Cliente Cliente { get; set; } = default!;
+    //[Required]
+    //[Column("cliente", TypeName = "varchar(150)")]
+    //public Cliente Cliente { get; set; } = default!;
 
     [Column("valor_total", TypeName = "decimal")]
     public decimal ValorTotal { get; set; }

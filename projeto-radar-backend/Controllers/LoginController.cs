@@ -18,7 +18,7 @@ namespace projeto_radar_backend.Controllers
       _context = context;
     }
 
-    [HttpPost("/login")]
+    [HttpPost("api/login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
 		{
