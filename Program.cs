@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using projeto_radar_backend.Database;
-using projeto_radar_backend.Helpers;
 using projeto_radar_backend.Services.Auth;
 using System.Text;
 
@@ -108,7 +107,7 @@ builder.Services.AddMvc(config =>
 var app = builder.Build();
 
 //Configurando Railway
-// var scope = app.Services.CreateScope();
+//var scope = app.Services.CreateScope();
 //await DataHelper.ManageDataAsync(scope.ServiceProvider);
 
 // Configure the HTTP request pipeline.
