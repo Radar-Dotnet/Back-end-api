@@ -13,7 +13,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7058;http://localhost:5208",
+      "applicationUrl": "https://dbradar.up.railway.app",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
