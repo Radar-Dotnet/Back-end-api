@@ -105,6 +105,10 @@ builder.Services.AddMvc(config =>
 
 var app = builder.Build();
 
+//Configurando Railway
+var scope = app.Services.CreateScope();
+await DataHelper.ManageDataAsync(scope.ServiceProvider);
+
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
