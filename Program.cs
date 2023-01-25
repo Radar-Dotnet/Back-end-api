@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using projeto_radar_backend.Database;
@@ -105,10 +104,6 @@ builder.Services.AddMvc(config =>
 });
 
 var app = builder.Build();
-
-//Configurando Railway
-//var scope = app.Services.CreateScope();
-//await DataHelper.ManageDataAsync(scope.ServiceProvider);
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
