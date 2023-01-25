@@ -14,18 +14,21 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(
         name: "AllowOrigin",
-        builder => {
+        builder =>
+        {
             builder.AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
         });
 });
 
+
 builder.Services.AddDbContext<DbRadarContext>(service =>
 {
-  var conn = Environment.GetEnvironmentVariable("DATABASE_CF_URL");
-  if (conn is null) conn = builder.Configuration.GetConnectionString("cnn");
-  service.UseMySql(conn, ServerVersion.AutoDetect(conn));
+    var conexao = "Uid=root;Password=7nUE4XYznrAHfDpL2rMT;Server=containers-us-west-125.railway.app;Port=5605;Database=railway;default command timeout=0;SslMode=none";
+    var conn = Environment.GetEnvironmentVariable("DATABASE_CF_URL");
+    if (conexao is null) conexao = builder.Configuration.GetConnectionString("conexao");
+    service.UseMySql(conexao, ServerVersion.AutoDetect(conexao));
 });
 
 // Add services to the container.
@@ -34,25 +37,25 @@ builder.Services.AddControllers();
 
 builder.Services.AddAuthentication(x =>
 {
-  x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-  x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
 {
-  x.RequireHttpsMetadata = false;
-  x.SaveToken = true;
-  x.TokenValidationParameters = new TokenValidationParameters
-  {
-    ValidateIssuerSigningKey = true,
-    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(TokenJWT.Key)),
-    ValidateIssuer = false,
-    ValidateAudience = false
-  };
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(TokenJWT.Key)),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
 });
 
 builder.Services.AddAuthorization(options =>
 {
-  options.AddPolicy("admin", policy => policy.RequireClaim("admin"));
-  options.AddPolicy("editor", policy => policy.RequireClaim("editor"));
+    options.AddPolicy("admin", policy => policy.RequireClaim("admin"));
+    options.AddPolicy("editor", policy => policy.RequireClaim("editor"));
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -61,25 +64,25 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(c =>
 {
-  c.SwaggerDoc("v1", new OpenApiInfo
-  {
-    Title = "Radar API",
-    Description = "Projeto final - Código do Futuro",
-    Contact = new OpenApiContact { Name = "Grupo 1"},
-    License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
-  });
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Radar API",
+        Description = "Projeto final - Código do Futuro",
+        Contact = new OpenApiContact { Name = "Grupo 1" },
+        License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
+    });
 
-  c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-  {
-    Description = "Insira o token JWT como no exemplo: Bearer {SEU_TOKEN}",
-    Name = "Authorization",
-    Scheme = "Bearer",
-    BearerFormat = "JWT",
-    In = ParameterLocation.Header,
-    Type = SecuritySchemeType.ApiKey
-  });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Insira o token JWT como no exemplo: Bearer {SEU_TOKEN}",
+        Name = "Authorization",
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey
+    });
 
-  c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
@@ -97,11 +100,12 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddMvc(config =>
 {
-  var policy = new AuthorizationPolicyBuilder()
-                   .RequireAuthenticatedUser()
-                   .Build();
-  config.Filters.Add(new AuthorizeFilter(policy));
+    var policy = new AuthorizationPolicyBuilder()
+                     .RequireAuthenticatedUser()
+                     .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
 });
+
 
 var app = builder.Build();
 
@@ -120,4 +124,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
