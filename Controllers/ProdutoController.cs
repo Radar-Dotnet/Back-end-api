@@ -83,7 +83,7 @@ namespace projeto_radar_backend.Controllers
       return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
     }
 
-    [HttpDelete("{id}")
+    [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteProduto(int id)
     {
