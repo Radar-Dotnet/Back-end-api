@@ -76,10 +76,10 @@ namespace projeto_radar_backend.Controllers
       if (_context.Produtos == null)
         return Problem("Entity set 'DbRadarContext.Produtos'  is null.");
 
-      _context.Produtos.Add(produto);
+      _context.Produtos.Add(produtoDTO);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
+      return CreatedAtAction("GetProduto", new { id = produtoDTO.Id }, produtoDTO);
     }
 
     [HttpDelete("{id}")]
