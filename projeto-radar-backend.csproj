@@ -1,37 +1,38 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>projeto_radar_backend</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>projeto_radar_backend</RootNamespace>
+		<InvariantGlobalization>True</InvariantGlobalization>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.13" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.13" />
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.13" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Microsoft.EntityFrameworkCore" />
-    <None Remove="Pomelo.EntityFrameworkCore.MySql" />
-    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
-    <None Remove="Models\" />
-    <None Remove="Database\" />
-    <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
-    <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
-    <None Remove="DTOs\" />
-    <None Remove="Services\" />
-    <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Microsoft.EntityFrameworkCore" />
+		<None Remove="Pomelo.EntityFrameworkCore.MySql" />
+		<None Remove="Microsoft.EntityFrameworkCore.Tools" />
+		<None Remove="Models\" />
+		<None Remove="Database\" />
+		<None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+		<None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+		<None Remove="DTOs\" />
+		<None Remove="Services\" />
+		<None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
+	</ItemGroup>
 </Project>
