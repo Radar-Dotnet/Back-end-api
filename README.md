@@ -136,6 +136,16 @@ Requisições para a API devem seguir os padrões (HTTP):
     </td>
   </tr>
 </table>
+  
+ <h2>💻 Tecnologias utilizadas no projeto: <h2>
+  <table  align= "center">
+   <tr>
+   <a  href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,github,dotnet,c#,mysql" />    
+  </a>
+ </tr>
+  </table>   
+
 
 <div id="greetings">
 <h2> 🤝 Agradecimentos </h2>
