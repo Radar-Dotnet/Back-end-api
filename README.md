@@ -10,6 +10,7 @@ O projeto consiste em desenvolver uma API REST em AspNet core API C#, para que p
 <br>- <a href="#Metodos">Métodos</a>
 <br>- <a href="#Endpoints">Endpoints</a>
 <br>- <a href="#Modelo">Modelo ER</a>
+<br>- <a href="#Tecnologias">Tecnologias utilizadas ER</a>
 
 <hr>
 <h3> <a href="https://projetoradar.vercel.app/login">Acesse a página:</a> </h3>
@@ -82,6 +83,15 @@ Requisições para a API devem seguir os padrões (HTTP):
 ![image](https://user-images.githubusercontent.com/95944401/214358950-40e998d8-30d6-4904-bcc1-b300906f9e5b.png)
 </div>
 <hr>
+  
+   <h2 id="Tecnologias">💻 Tecnologias utilizadas no projeto: <h2>
+  <table  align= "center">
+   <tr>
+   <a  href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,github,dotnet,c#,mysql" />    
+  </a>
+ </tr>
+  </table>   
 
 <h2>:computer: Desenvolvedores:</h2>
 <table>
@@ -136,16 +146,6 @@ Requisições para a API devem seguir os padrões (HTTP):
     </td>
   </tr>
 </table>
-  
- <h2>💻 Tecnologias utilizadas no projeto: <h2>
-  <table  align= "center">
-   <tr>
-   <a  href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=git,github,dotnet,c#,mysql" />    
-  </a>
- </tr>
-  </table>   
-
 
 <div id="greetings">
 <h2> 🤝 Agradecimentos </h2>
